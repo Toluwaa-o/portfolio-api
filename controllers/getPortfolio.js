@@ -1,7 +1,7 @@
 const Portfolio = require('../models/portfolio')
 
 const getPortfolio = async (req, res) => {
-    const portfolio = await Portfolio.find({}).select('-_id -__v -description -mobileView -link')
+    const portfolio = await Portfolio.find({}).select('-__v -description -mobileView -link')
     res.status(200).json({ portfolio })
 }
 
