@@ -16,15 +16,6 @@ const xss = require('xss-clean')
 const msgRoute = require('./routes/message')
 const portRoute = require('./routes/portfolio')
 
-const fileUpload = require('express-fileupload')
-const cloudinary = require('cloudinary').v2
-cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.CLOUD_API_KEY,
-    api_secret: process.env.CLOUD_API_SECRET
-})
-
-app.use(fileUpload({useTempFiles: true}))
 app.use(express.json())
 app.use(helmet())
 app.use(cors())
