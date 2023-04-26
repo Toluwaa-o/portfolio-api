@@ -6,11 +6,11 @@ const getPortfolio = async (req, res) => {
     let portfolio
 
     if(limit){
-        portfolio = await Portfolio.find({}).select('-_id -__v -description -mobileView -link').limit(limit)
+        portfolio = await Portfolio.find({}).select('-__v -description -mobileView -link').limit(limit)
         return res.status(200).json({ portfolio })
     }
     
-    portfolio = await Portfolio.find({}).select('-_id -__v -description -mobileView -link')
+    portfolio = await Portfolio.find({}).select('-__v -description -mobileView -link')
     res.status(200).json({ portfolio })
 }
 
