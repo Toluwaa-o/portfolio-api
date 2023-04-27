@@ -5,7 +5,7 @@ const getPortfolio = async (req, res) => {
 
     let portfolio
     let myLimit = limit || 5
-    let myPage = page || 0
+    let myPage = page || 1
     let skip = (myPage - 1) * myLimit
 
     portfolio = await Portfolio.find({}).select('-__v -description -mobileView -link').skip(skip).limit(myLimit)
