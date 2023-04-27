@@ -8,7 +8,7 @@ const getPortfolio = async (req, res) => {
     let myPage = page || 1
     let skip = (myPage - 1) * myLimit
 
-    portfolio = await Portfolio.find({}).select('-__v -description -mobileView -link').skip(skip).limit(myLimit)
+    portfolio = await Portfolio.find({}).select('-__v -description -mobileView -tools').skip(skip).limit(myLimit)
     let total = await Portfolio.countDocuments({})
     let numOfPages = Math.ceil(total/myLimit)
     res.status(200).json({ portfolio, numOfPages })
