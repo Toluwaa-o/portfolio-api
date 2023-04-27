@@ -1,17 +1,17 @@
 const Portfolio = require('../models/portfolio')
 
 const getPortfolio = async (req, res) => {
-    const { limit } = req.query
+    const { limit, page } = req.query
 
     let portfolio
+    let limit = limit || 5
+    let page = page || 0
+    let skip = (thePage - 1) * limit
 
-    if(limit){
-        portfolio = await Portfolio.find({}).select('-__v -description -mobileView -link').limit(limit)
-        return res.status(200).json({ portfolio })
-    }
-    
-    portfolio = await Portfolio.find({}).select('-__v -description -mobileView -link')
-    res.status(200).json({ portfolio })
+    portfolio = await Portfolio.find({}).select('-__v -description -mobileView -link').skip(skip).limit(limit)
+    let total = await countDocuments({})
+    let numOfPages = Math.celi(total/limit)
+    res.status(200).json({ portfolio, numOfPages })
 }
 
 const getSingle = async (req, res) => {
