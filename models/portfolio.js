@@ -22,7 +22,8 @@ const PortfolioSchema = new mongoose.Schema({
     link: {
         type: String,
         required: true
-    }
+    },
+    featured: { type: Boolean, default: false }
 })
 
 module.exports = mongoose.model('Portfolio', PortfolioSchema)
